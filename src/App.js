@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Navbar from './componants/layout/Navbar';
+// import Film from './results/Film';
+import Results from './componants/results/Results';
+import axios from 'axios';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    films: [],
+    // loading: false,
+  };
+
+  async componentDidMount() {
+    // this.setState({ loading: true });
+
+    const res = await axios.get(
+      'http://www.omdbapi.com/?i=tt3896198&apikey=f41dfb7f'
+    );
+
+    console.log(res.data);
+
+    this.setState({ films: res.data });
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <Navbar name='Shoppies' />
+        <Results />
+      </div>
+    );
+  }
 }
 
 export default App;
