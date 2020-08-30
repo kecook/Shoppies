@@ -7,7 +7,7 @@ import './App.css';
 
 class App extends Component {
   state = {
-    films: [],
+    films: null,
     // loading: false,
   };
 
@@ -20,14 +20,14 @@ class App extends Component {
 
     console.log(res.data);
 
-    this.setState({ films: res.data });
+    this.setState({ films: [res.data] });
   }
 
   render() {
     return (
       <div className='App'>
         <Navbar name='Shoppies' />
-        <Results />
+        <Results films={this.state.films} />
       </div>
     );
   }
