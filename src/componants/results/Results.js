@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Film from './Film';
 
-class Results extends Component {
+const Results = ({ films, film }) => {
   // state = {
   //   films: [
   //     {
@@ -23,18 +23,12 @@ class Results extends Component {
   //   ],
   // };
 
-  componentDidMount() {}
-
-  render() {
-    return (
-      <div>
-        {this.props.film &&
-          this.props.films.map((film) => (
-            <Film key={film.id} films={film}></Film>
-          ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h2>Your search returned...</h2>
+      {film && films.map((film) => <Film key={film.id} films={film} />)}
+    </div>
+  );
+};
 
 export default Results;
