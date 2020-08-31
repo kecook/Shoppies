@@ -8,41 +8,34 @@ import './App.css';
 
 class App extends Component {
   state = {
-    films: null,
-    // loading: false,
-  };
+    films: null, // loading: false,
+  }; // async componentDidMount() { //   console.log('f41dfb7f'); //   // this.setState({ loading: true }); //   const res = await axios.get( //     // `http://www.omdbapi.com/?apikey={process.env.REACT_APP_MOVIE_KEY}&t=fargo` //     'http://www.omdbapi.com/?apikey=f41dfb7f&t=fargo' //   ); //   console.log(res.data); //   this.setState({ films: [res.data] }); // } //search movies
 
-  // async componentDidMount() {
-  //   console.log('f41dfb7f');
-  //   // this.setState({ loading: true });
+  // this function accepts   a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
 
-  //   const res = await axios.get(
-  //     // `http://www.omdbapi.com/?apikey={process.env.REACT_APP_MOVIE_KEY}&t=fargo`
-  //     'http://www.omdbapi.com/?apikey=f41dfb7f&t=fargo'
-  //   );
-
-  //   console.log(res.data);
-
-  //   this.setState({ films: [res.data] });
-  // }
-  //search movies
   searchMovies = async (text) => {
-    const res = await axios.get(
-      // `http://www.omdbapi.com/?apikey={process.env.REACT_APP_MOVIE_KEY}&t=fargo`
-      `http://www.omdbapi.com/?apikey=f41dfb7f&t=${text}`
+    const response = await axios.get(
+      `http://www.omdbapi.com/?apikey=f41dfb7f&s=${text}`
     );
 
-    console.log(res.data);
+    const { data } = response;
+    const { Search } = data;
 
-    this.setState({ films: [res.data.items] });
+    console.log('lets see what search is', Search);
+
+    this.setState({ films: Search });
   };
 
   render() {
     return (
       <div className='App'>
+                
         <Navbar name='Shoppies' />
+                
         <Search searchMovies={this.searchMovies} />
+                
         <Results films={this.state.films} />
+              
       </div>
     );
   }

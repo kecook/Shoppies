@@ -1,11 +1,13 @@
 import React from 'react';
 
 const Films = (props) => {
-  const { title, year, id } = props.films; //this is coming from results state
+  const { films } = props; //this is coming from results state
+  const { Title, Year } = films;
   return (
     <div>
-      <h2>{title}</h2>
-      <h3>{year}</h3>
+            <h2>{Title}</h2>
+            <h3>{Year}</h3>
+          
     </div>
   );
 };
