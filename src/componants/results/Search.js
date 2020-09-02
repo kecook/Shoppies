@@ -11,13 +11,17 @@ class Search extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.searchMovies(this.state.text);
-    this.setState({ text: '' });
+    if (this.state.text === '') {
+      this.props.setAlert('Field can not be left blank', 'light');
+    } else {
+      this.props.searchMovies(this.state.text);
+      this.setState({ text: '' });
+    }
   };
 
   render() {
     return (
-      <div>
+      <div className='card'>
         <form onSubmit={this.onSubmit}>
           <input
             type='text'
@@ -26,8 +30,21 @@ class Search extends Component {
             value={this.state.text}
             onChange={this.onChange}
           />
-          <input type='submit' value='Search' />
+          <input
+            className='btn btn-sm btn-block'
+            type='submit'
+            value='Search'
+          />
         </form>
+
+        {this.props.showClear && (
+          <button
+            className='btn btn-light btn-block'
+            onClick={this.props.clearMovies}
+          >
+            Clear
+          </button>
+        )}
       </div>
     );
   }
