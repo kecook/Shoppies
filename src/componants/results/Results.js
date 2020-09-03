@@ -1,36 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Film from './Film';
 
-class Results extends Component {
-  state = {
-    films: [
-      {
-        id: '1',
-        title: 'Fargo',
-        year: '1996',
-      },
-      {
-        id: '2',
-        title: 'Little Woman',
-        year: '1994',
-      },
+const Results = (props) => {
+  const { films } = props;
 
-      {
-        id: '3',
-        title: 'Moon Rise Kingdom',
-        year: '2012',
-      },
-    ],
-  };
-  render() {
-    return (
-      <div>
-        {this.state.films.map((film) => (
-          <Film key={film.id} films={film}></Film>
-        ))}
+  // console.log('films', films);
+
+  return (
+    <div>
+            <h2>Your search returned...</h2> 
+      <div style={resultsStyle}>
+        {films && films.map((film) => <Film key={film.imdbID} films={film} />)} 
       </div>
-    );
-  }
-}
+          
+    </div>
+  );
+};
+
+const resultsStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(5, 1fr)',
+  gridGap: '1rem',
+};
 
 export default Results;
