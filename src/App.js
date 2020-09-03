@@ -3,6 +3,7 @@ import Navbar from './componants/layout/Navbar';
 import Search from './componants/results/Search';
 import Results from './componants/results/Results';
 import Alert from './componants/layout/Alert';
+import Nothing from './componants/layout/Nothing';
 // import Film from './componants/results/Film';
 import Nomination from './componants/nomination/Nomination';
 import axios from 'axios';
@@ -12,6 +13,7 @@ class App extends Component {
   state = {
     films: [], // loading: false,
     alert: null,
+    nothing: null,
     nominate: [],
   };
 
@@ -25,7 +27,7 @@ class App extends Component {
     const { data } = response;
     const { Search } = data;
 
-    // console.log('lets see what search is', Search);
+    console.log('lets see what search is', Search);
 
     this.setState({ films: Search });
   };
@@ -40,10 +42,17 @@ class App extends Component {
     setTimeout(() => this.setState({ alert: null }), 4000);
   };
 
+  //set nothing
+  setNothing = (msg, type) => {
+    this.setState({ nothing: { msg, type } });
+
+    setTimeout(() => this.setState({ nothing: null }), 4000);
+  };
+
   //nominate movies
   nominate = (films, nominate) => {
-    nominate.push({ films });
     console.log(nominate);
+    nominate.push({ films });
   };
   // nominate = (films, nomiate) => {
   //   this.setState = nominate.push(films);
@@ -58,17 +67,18 @@ class App extends Component {
                 
         <Navbar name='Shoppies' />
         <div className='container'>
-          <Alert alert={this.state.alert} />       
+          <Alert alert={this.state.alert} />   
+          <Nothing nothing={this.state.nothing} />
+              
           <Search
             searchMovies={this.searchMovies}
             clearMovies={this.clearMovies}
             showClear={this.state.films.length > 0 ? true : false}
             setAlert={this.setAlert}
           />
-                  
+             
           <Results films={this.state.films} nominate={this.state.nominate} />
           <Nomination />
-           
         </div>
                
       </div>

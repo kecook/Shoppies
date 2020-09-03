@@ -5,13 +5,15 @@ const Films = (props) => {
   const { Title, Year, Type } = films;
   const { nominate } = [];
 
+  // onClick = (nominate) => {
+  //   this.props.nominate = nominate.push({ films });
+  // };
   return (
     <div className='card text-center'>
             <h3>{Title}</h3>
             <h3>{Year}</h3>
       <h3>{Type}</h3>
-          
-      <button className='btn btn-sm' onClick={this.props.nominate}>
+      <button className='btn btn-sm' onClick={props.nominate}>
         Nominate
       </button>
     </div>

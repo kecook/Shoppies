@@ -13,6 +13,8 @@ class Search extends Component {
     e.preventDefault();
     if (this.state.text === '') {
       this.props.setAlert('Field can not be left blank', 'light');
+    } else if (this.state.text === 'undefined') {
+      this.props.setNothing('your search returned no matches', 'light');
     } else {
       this.props.searchMovies(this.state.text);
       this.setState({ text: '' });
