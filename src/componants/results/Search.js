@@ -22,7 +22,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className='card'>
+      <div>
         <form onSubmit={this.onSubmit}>
           <input
             type='text'

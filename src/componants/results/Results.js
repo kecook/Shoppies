@@ -8,8 +8,9 @@ const Results = (props) => {
 
   return (
     <div>
-            <h2>Your search returned...</h2> 
-      <div style={resultsStyle}>
+      <div className='searchDiv'>
+             <h2 className='returnTitle'>Your search returned</h2>
+        {/* style={resultsStyle}> */}
         {films &&
           films.map((film) => (
             <Film
@@ -23,12 +24,6 @@ const Results = (props) => {
           
     </div>
   );
-};
-
-const resultsStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(5, 1fr)',
-  gridGap: '1rem',
 };
 
 export default Results;

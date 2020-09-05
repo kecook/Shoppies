@@ -48,6 +48,25 @@ img {
   overflow: hidden;
   padding: 0 2rem;
 }
+.container2 {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  border: solid green 4px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(2, minmax(75px, auto));
+  grid-gap: 5px;
+}
+.alert {
+  display: block;
+}
+
+.nominationTitle,
+.searchDiv {
+  text-align: center;
+}
 
 /* Text Styles*/
 .x-large {

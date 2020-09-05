@@ -71,34 +71,42 @@ class App extends Component {
 
   //nominate movies
   addFilmToNominateArray = (films) => {
-    this.setState(
-      (state) => {
-        {
-          const nominationList = [...state.nominationList, films];
-          return nominationList;
-        }
-      },
-      () => console.log(this.state.nominationList)
-    );
+    // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
+    if (this.state.nominationList.length <= 4) {
+      this.setState(
+        (state) => ({ nominationList: [...state.nominationList, films] }),
+        () =>
+          console.log('this.state.nominationList', this.state.nominationList)
+      );
+    } else {
+      this.setAlert(
+        'You can only nominate 5 movies.  You have already nominated 5.  '
+      );
+    }
   };
 
-  //what I'm trying to say. In nominate function, take in the parameter(by this i mean the info they have, maybe state is a better term) of onNominate and films, then move this data into the array called nominationList.
-
-  //to dispay the nomination list: map through the array of nominationList and display earch item in the array.
-  //to make sure the list is no longer than five: run a four loop to make sure it stops at five.
-
-  //to remove a title from the nomination list: have a button that will remove an item from the array of nominationList
-
-  //adding movie to nomination list
-  // nominationslist = (e.target) =>this.setState({nominationlist.push({film )});
+  //
+  removeFilmFromNominateArray = (films) => {
+    this.setState(
+      (state) => ({
+        nominationList: state.nominationList.filter(
+          //state.nominationList.filter filers out the one we want to remove.  Read about .filter on arrays in Javascript on the Mozilla website.
+          (film) => film.imdbID !== films.imdbID //we use the imdbID here because it is a unique ID
+        ),
+      }),
+      () =>
+        console.log(
+          'this.state.nominationList in removeFilmFromNominateArray',
+          this.state.nominationList
+        )
+    );
+  };
 
   render() {
     return (
       <div className='App'>
-                
         <Navbar name='Shoppies' />
         <div className='container'>
-          <Alert alert={this.state.alert} />        
           <Search
             searchMovies={this.searchMovies}
             clearMovies={this.clearMovies}
@@ -107,14 +115,19 @@ class App extends Component {
             }
             setAlert={this.setAlert}
           />
-             
+          <Alert alert={this.state.alert} />
+        </div>
+
+        <div className='container2'>
           <Results
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
           />
-          <Nomination />
+          <Nomination
+            nominationList={this.state.nominationList}
+            removeFilmFromNominateArray={this.removeFilmFromNominateArray}
+          />
         </div>
-               
       </div>
     );
   }

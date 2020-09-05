@@ -6,8 +6,10 @@ const Films = (props) => {
 
   return (
     <div className='card text-center'>
-            <h3>{Title}</h3>
-            <h3>{Year}</h3>
+            
+      <p>
+        {Title} ({Year})
+      </p>
       <button
         className='btn btn-sm'
         onClick={() => addFilmToNominateArray(films)}
