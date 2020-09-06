@@ -3,33 +3,56 @@ import Navbar from './componants/layout/Navbar';
 import Search from './componants/results/Search';
 import Results from './componants/results/Results';
 import Alert from './componants/layout/Alert';
-import Nothing from './componants/layout/Nothing';
-// import Film from './componants/results/Film';
 import Nomination from './componants/nomination/Nomination';
 import axios from 'axios';
 import './App.css';
 
 class App extends Component {
   state = {
-    films: [], // loading: false,
+    films: [],
     alert: null,
-    nothing: null,
-    nominate: [],
+    nominationList: [],
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
 
   searchMovies = async (text) => {
-    const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=f41dfb7f&s=${text}`
-    );
+    try {
+      const API_KEY = process.env.REACT_APP_API_MOVIE_KEY;
+      const response = await axios.get(
+        `http://www.omdbapi.com/?apikey=${API_KEY}&`,
+        {
+          params: { s: text, type: 'movie' },
+        }
+      );
 
-    const { data } = response;
-    const { Search } = data;
+      const { data } = response;
+      const { Search } = data;
 
-    console.log('lets see what search is', Search);
-
-    this.setState({ films: Search });
+      if (data.Response === 'True') {
+        this.setState({ films: Search });
+      } else if (data.Error === 'Movie not found!') {
+        this.setAlert(
+          'Your search did not return any matches.Please try again'
+        );
+      } else if (data.Error === 'Too many results.') {
+        this.setAlert(
+          'Your search generated too many results.  Please enter a more specific search term.'
+        );
+      } else {
+        this.setAlert(
+          'We encountered an unknown error, please try another search term'
+        );
+      }
+    } catch (error) {
+      if (error === 'Error: Network Error') {
+        this.setAlert(
+          'We cannot reach the movie database.  Please check your internet connection'
+        );
+      } else {
+        this.setAlert('We encountered an unknown error, please try again');
+      }
+    }
   };
 
   //clear search movies from state
@@ -39,48 +62,55 @@ class App extends Component {
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
 
-    setTimeout(() => this.setState({ alert: null }), 4000);
-  };
-
-  //set nothing
-  setNothing = (msg, type) => {
-    this.setState({ nothing: { msg, type } });
-
-    setTimeout(() => this.setState({ nothing: null }), 4000);
+    setTimeout(() => this.setState({ alert: null }), 6000);
   };
 
   //nominate movies
-  nominate = (films, nominate) => {
-    console.log(nominate);
-    nominate.push({ films });
+  addFilmToNominateArray = (films) => {
+    // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
+    if (this.state.nominationList.length <= 4) {
+      this.setState((state) => ({
+        nominationList: [...state.nominationList, films],
+      }));
+    } else {
+      this.setAlert('You can only nominate 5 movies.');
+    }
   };
-  // nominate = (films, nomiate) => {
-  //   this.setState = nominate.push(films);
-  // };
 
-  //adding movie to nomination list
-  // nominationslist = (e.target) =>this.setState({nominationlist.push({film )});
+  //
+  removeFilmFromNominateArray = (films) => {
+    this.setState((state) => ({
+      nominationList: state.nominationList.filter(
+        (film) => film.imdbID !== films.imdbID //we use the imdbID here because it is a unique ID
+      ),
+    }));
+  };
 
   render() {
     return (
       <div className='App'>
-                
         <Navbar name='Shoppies' />
         <div className='container'>
-          <Alert alert={this.state.alert} />   
-          <Nothing nothing={this.state.nothing} />
-              
           <Search
             searchMovies={this.searchMovies}
             clearMovies={this.clearMovies}
-            showClear={this.state.films.length > 0 ? true : false}
+            showClear={this.state.films.length ? true : false}
             setAlert={this.setAlert}
           />
-             
-          <Results films={this.state.films} nominate={this.state.nominate} />
-          <Nomination />
+          <Alert alert={this.state.alert} />
         </div>
-               
+
+        <div className='container2'>
+          <Results
+            films={this.state.films}
+            addFilmToNominateArray={this.addFilmToNominateArray}
+            nominationList={this.state.nominationList}
+          />
+          <Nomination
+            nominationList={this.state.nominationList}
+            removeFilmFromNominateArray={this.removeFilmFromNominateArray}
+          />
+        </div>
       </div>
     );
   }

@@ -1,13 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import SingleNomination from './SingleNomination';
 
-class Nomination extends Component {
-  render() {
-    return (
-      <div className='card grid-2'>
-        <h2>Your nominations are..</h2>
-      </div>
-    );
-  }
-}
+const Nomination = (props) => {
+  const { nominationList, removeFilmFromNominateArray } = props;
+
+  // console.log('films', films);
+
+  return (
+    <div>
+      <h2 className='nomination-text '>Your nominations are...</h2>
+
+      {nominationList &&
+        nominationList.map((film) => (
+          <SingleNomination
+            key={film.imdbID + 1}
+            films={film}
+            removeFilmFromNominateArray={removeFilmFromNominateArray}
+          />
+        ))}
+    </div>
+  );
+};
 
 export default Nomination;
