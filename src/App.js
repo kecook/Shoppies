@@ -7,6 +7,13 @@ import Nomination from './componants/nomination/Nomination';
 import axios from 'axios';
 import './App.css';
 
+let movieId;
+if (process.env.NODE_ENV !== 'production') {
+  movieId = process.env.REACT_APP_API_MOVIE_KEY;
+} else {
+  movieId = process.env.MOVIE_KEY;
+}
+
 class App extends Component {
   state = {
     films: [],
@@ -18,9 +25,9 @@ class App extends Component {
 
   searchMovies = async (text) => {
     try {
-      const API_KEY = process.env.REACT_APP_API_MOVIE_KEY;
+      // const API_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
-        `https://www.omdbapi.com/?apikey=${API_KEY}&`,
+        `https://www.omdbapi.com/?apikey=${movieId}&`,
         {
           params: { s: text, type: 'movie' },
         }
