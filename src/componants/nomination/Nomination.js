@@ -7,8 +7,9 @@ const Nomination = (props) => {
   // console.log('films', films);
 
   return (
-    <div className='nominationDiv resultsStyle'>
-        <h2 className='nominationTitle'>Your nominations</h2>
+    <div className='nominationDiv'>
+      <h2 className='nomination-text '>Your nominations are...</h2>
+
       {nominationList &&
         nominationList.map((film) => (
           <SingleNomination

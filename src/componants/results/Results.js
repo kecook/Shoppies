@@ -2,26 +2,27 @@ import React from 'react';
 import Film from './Film';
 
 const Results = (props) => {
-  const { films, addFilmToNominateArray } = props;
-
-  // console.log('films', films);
+  const { films, addFilmToNominateArray, nominationList } = props;
 
   return (
-    <div>
-      <div className='searchDiv'>
-             <h2 className='returnTitle'>Your search returned</h2>
-        {/* style={resultsStyle}> */}
-        {films &&
-          films.map((film) => (
+    <div className='search-div'>
+       <h2 className='text-center'>Your search returned...</h2>
+      {films &&
+        films.map((filmInSearchResults) => {
+          const isNominated = nominationList.find(
+            (nominatedMovie) =>
+              nominatedMovie.imdbID === filmInSearchResults.imdbID
+          );
+          return (
             <Film
-              key={film.imdbID}
-              films={film}
+              key={filmInSearchResults.imdbID}
+              films={filmInSearchResults}
               addFilmToNominateArray={addFilmToNominateArray}
+              isNominated={isNominated}
             />
-          ))}
-         
-      </div>
-          
+          );
+        })}
+       
     </div>
   );
 };

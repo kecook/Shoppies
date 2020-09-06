@@ -5,16 +5,16 @@ const SingleNomination = (props) => {
   const { Title, Year } = films;
 
   return (
-    <div className='card text-center'>
+    <div className=' text-center'>
             
-      <p>
+      <p className='text-center'>
         {Title}({Year})
       </p>
       <button
-        className='btn btn-sm'
+        className='btn btn-sm btn-remove'
         onClick={() => removeFilmFromNominateArray(films)}
       >
-        Remove Nomination
+        Remove
       </button>
     </div>
   );
