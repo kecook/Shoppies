@@ -69,11 +69,9 @@ class App extends Component {
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
     if (this.state.nominationList.length <= 4) {
-      this.setState(
-        (state) => ({ nominationList: [...state.nominationList, films] }),
-        () =>
-          console.log('this.state.nominationList', this.state.nominationList)
-      );
+      this.setState((state) => ({
+        nominationList: [...state.nominationList, films],
+      }));
     } else {
       this.setAlert('You can only nominate 5 movies.');
     }
@@ -81,18 +79,11 @@ class App extends Component {
 
   //
   removeFilmFromNominateArray = (films) => {
-    this.setState(
-      (state) => ({
-        nominationList: state.nominationList.filter(
-          (film) => film.imdbID !== films.imdbID //we use the imdbID here because it is a unique ID
-        ),
-      }),
-      () =>
-        console.log(
-          'this.state.nominationList in removeFilmFromNominateArray',
-          this.state.nominationList
-        )
-    );
+    this.setState((state) => ({
+      nominationList: state.nominationList.filter(
+        (film) => film.imdbID !== films.imdbID //we use the imdbID here because it is a unique ID
+      ),
+    }));
   };
 
   render() {
