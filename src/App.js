@@ -19,14 +19,12 @@ class App extends Component {
   searchMovies = async (text) => {
     try {
       const REACT_APP_API_MOVIE_KEY = process.env.REACT_APP_API_MOVIE_KEY;
-      console.log('this is my key', REACT_APP_API_MOVIE_KEY);
       const response = await axios.get(
         `https://www.omdbapi.com/?apikey=${REACT_APP_API_MOVIE_KEY}&s&type`,
         {
           params: { s: text, type: 'movie' },
         }
       );
-      console.log('this is my key', REACT_APP_API_MOVIE_KEY);
       const { data } = response;
       const { Search } = data;
 
