@@ -6,7 +6,7 @@ const Results = (props) => {
 
   return (
     <div className='search-div'>
-       <h2 className='text-center'>Your search returned...hello</h2>
+       <h2 className='text-center'>Your search returned...</h2>
       {films &&
         films.map((filmInSearchResults) => {
           const isNominated = nominationList.find(
