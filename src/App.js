@@ -20,12 +20,12 @@ class App extends Component {
     try {
       const MOVIE_API_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
-        `https://www.omdbapi.com/?apikey=${MOVIE_API_KEY}&type`,
+        `https://www.omdbapi.com/?apikey=${MOVIE_API_KEY}&s&type`,
         {
           params: { s: text, type: 'movie' },
         }
       );
-
+      console.log('this is my key', MOVIE_API_KEY);
       const { data } = response;
       const { Search } = data;
 
