@@ -14,7 +14,6 @@ const Films = (props) => {
         <p>
           {Title} ({Year})
         </p>
-        <h2>hello</h2>
         {!isNominated && (
           <button
             className='btn btn-sm btn-nom'
