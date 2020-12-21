@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleNomination from './SingleNomination';
+import ANomination from './ANomination';
 
 const Nomination = (props) => {
   const { nominationList, removeFilmFromNominateArray } = props;
@@ -12,7 +12,7 @@ const Nomination = (props) => {
 
       {nominationList &&
         nominationList.map((film) => (
-          <SingleNomination
+          <ANomination
             key={film.imdbID + 1}
             films={film}
             removeFilmFromNominateArray={removeFilmFromNominateArray}

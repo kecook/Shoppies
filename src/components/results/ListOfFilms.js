@@ -1,5 +1,5 @@
 import React from 'react';
-import Film from './Film';
+import AFilm from './AFilm';
 
 const Results = (props) => {
   const { films, addFilmToNominateArray, nominationList } = props;
@@ -14,9 +14,9 @@ const Results = (props) => {
               nominatedMovie.imdbID === filmInSearchResults.imdbID
           );
           return (
-            <Film
+            <AFilm
               key={filmInSearchResults.imdbID}
-              films={filmInSearchResults}
+              movieResult={filmInSearchResults}
               addFilmToNominateArray={addFilmToNominateArray}
               isNominated={isNominated}
             />

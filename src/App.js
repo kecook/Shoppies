@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Navbar from './componants/layout/Navbar';
-import Search from './componants/results/Search';
-import Results from './componants/results/Results';
-import Alert from './componants/layout/Alert';
-import Nomination from './componants/nomination/Nomination';
+import Navbar from './components/layout/navbar/Navbar';
+import SearchBar from './components/layout/searchBar/SearchBar';
+import ListOfFilms from './components/results/ListOfFilms';
+import Alert from './components/layout/alert/Alert';
+import NominationList from './components/nomination/NominationList';
 import axios from 'axios';
 import './App.css';
 
@@ -16,7 +16,7 @@ class App extends Component {
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
 
-  searchMovies = async (text) => {
+  searchForMovies = async (text) => {
     try {
       const REACT_APP_API_MOVIE_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
@@ -61,7 +61,13 @@ class App extends Component {
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
 
+
     setTimeout(() => this.setState({ alert: null }), 6000);
+  };
+
+  //close Alert
+  closeAlert = () => {
+    this.setState({ alert: null });
   };
 
   //nominate movies
@@ -90,22 +96,25 @@ class App extends Component {
       <div className='App'>
         <Navbar name='Shoppies' />
         <div className='container'>
-          <Search
-            searchMovies={this.searchMovies}
+
+          <SearchBar
+            searchForMovies={this.searchForMovies}
             clearMovies={this.clearMovies}
-            showClear={this.state.films.length ? true : false}
+            showClearButton={this.state.films.length ? true : false}
             setAlert={this.setAlert}
           />
-          <Alert alert={this.state.alert} />
+          <Alert
+          alert={this.state.alert} 
+          closeAlert={this.closeAlert}/>
         </div>
 
         <div className='container2'>
-          <Results
+          <ListOfFilms
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
             nominationList={this.state.nominationList}
           />
-          <Nomination
+          <NominationList
             nominationList={this.state.nominationList}
             removeFilmFromNominateArray={this.removeFilmFromNominateArray}
           />

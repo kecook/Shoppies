@@ -1,14 +1,14 @@
 import React from 'react';
 
 const Films = (props) => {
-  const { films, addFilmToNominateArray, isNominated } = props; //this is coming from results state
-  const { Title, Year } = films;
+  const { movieResult, addFilmToNominateArray, isNominated } = props; //this is coming from results state
+  const { Title, Year } = movieResult;
 
   return (
     <div className='card-flex text-center'>
         
       <div className='poster-img'>
-        <img src={films.Poster} alt='poster provided by database' />
+        <img src={movieResult.Poster} alt='poster provided by database' />
       </div>
       <div className='title-con'>
         <p>
@@ -17,7 +17,7 @@ const Films = (props) => {
         {!isNominated && (
           <button
             className='btn btn-sm btn-nom'
-            onClick={() => addFilmToNominateArray(films)}
+            onClick={() => addFilmToNominateArray(movieResult)}
             disabled={isNominated}
           >
             Nominate
