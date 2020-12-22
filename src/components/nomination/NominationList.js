@@ -1,7 +1,7 @@
 import React from 'react';
 import ANomination from './ANomination';
 
-const Nomination = (props) => {
+const nominationList = (props) => {
   const { nominationList, removeFilmFromNominateArray } = props;
 
   // console.log('films', films);
@@ -22,4 +22,4 @@ const Nomination = (props) => {
   );
 };
 
-export default Nomination;
+export default nominationList;

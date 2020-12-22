@@ -1,7 +1,7 @@
 import React from 'react';
 import AFilm from './AFilm';
 
-const Results = (props) => {
+const ListOfFilms = (props) => {
   const { films, addFilmToNominateArray, nominationList } = props;
 
   return (
@@ -27,4 +27,4 @@ const Results = (props) => {
   );
 };
 
-export default Results;
+export default ListOfFilms;

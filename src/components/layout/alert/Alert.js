@@ -5,8 +5,7 @@ const Alert = (props) => {
 
   return (
     alert !== null && (
-    <div className={`alert $
-    {alert.type}`}>
+    <div className={`alert ${alert.type}`}>
     {alert.msg}
     <button onClick={closeAlert} close />
     </div>
