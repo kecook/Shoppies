@@ -7,7 +7,10 @@ const Alert = (props) => {
     alert !== null && (
     <div className={`alert ${alert.type}`}>
     {alert.msg}
-    <button onClick={closeAlert} close />
+    <button className='closeButton' onClick={closeAlert} aria-label='close alert' type='button'>
+      <span aria-hidden='true'> &times;</span>
+    </button>
+   
     </div>
     )
   );

@@ -11,7 +11,7 @@ const SearchBar = (props) => {
   const  onSubmit = (e) => {
      e.preventDefault();
      if (!text) {
-       props.setAlert('field can not be left blank');
+       props.setAlert('Search field can not be left blank');
      } else {
        props.searchForMovies(text);
        setText('');

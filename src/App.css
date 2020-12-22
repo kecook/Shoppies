@@ -63,6 +63,25 @@ img {
   display: block;
   color: var(--danger-color);
   text-align: center;
+  position: relative;
+}
+.closeButton {
+  border: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+  background-color: var(--danger-color);
+  color: #333;
+  position: absolute;
+  top: 0px;
+  right: 0.5rem;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: rgb(119, 116, 116);
 }
 
 .nomination-text {
