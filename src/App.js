@@ -12,6 +12,7 @@ class App extends Component {
     films: [],
     alert: null,
     nominationList: [],
+    showNominationList: false
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
@@ -70,6 +71,12 @@ class App extends Component {
     this.setState({ alert: null });
   };
 
+  //show nomination list
+  toggleNominationListHandler = () => {
+    const doesShow = this.state.showNominationList;
+    this.setState({showNominationList: !doesShow});
+  };
+
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
@@ -90,6 +97,8 @@ class App extends Component {
       ),
     }));
   };
+
+  
 
   render() {
     return (
@@ -117,6 +126,9 @@ class App extends Component {
           <NominationList
             nominationList={this.state.nominationList}
             removeFilmFromNominateArray={this.removeFilmFromNominateArray}
+            toggleNominationListHandler={this.state.showNominationList.state ? true : false}
+           
+            // toggleNominationListHandler={this.state.toggleNominationListHandler}
           />
         </div>
       </div>
