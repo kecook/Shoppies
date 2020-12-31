@@ -12,7 +12,7 @@ const nominationList = (props) => {
 
   return (
     <div>
-      <button  onClick={props.toggleNominationListHandler ? true : false}>View my Nominations</button>
+      <button  onClick={toggleNominationListHandler ? true: false }>View my Nominations</button>
       { props.showNominationList === true ?
         <div>
           <h2 className='nomination-text '>Your nominations are...</h2>
