@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../layout/button/button'
 import '../../assets/ramona.png'
 
 const AFilm = (props) => {
@@ -23,13 +24,13 @@ const AFilm = (props) => {
           {Title} ({Year})
         </p>
         {!isNominated && (
-          <button
-            className='btn btn-sm btn-nom'
-            onClick={() => addFilmToNominateArray(movieResult)}
-            disabled={isNominated}
-          >
-            Nominate
-          </button>
+          <Button
+          text={"Nominate"}
+          onClick={() => addFilmToNominateArray(movieResult)}
+          disabled={isNominated}
+          buttonStyle={"btn--primary--solid"} 
+          buttonSize={"btn--medium"}
+          />
         )}
         {isNominated && <h4>Nominated!</h4>}
       </div>

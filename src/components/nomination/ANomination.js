@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '../layout/button/button'; 
+
 
 const ANomination = (props) => {
   const { films, removeFilmFromNominateArray } = props; //this is coming from results state
@@ -10,12 +12,14 @@ const ANomination = (props) => {
       <p className='text-center'>
         {Title}({Year})
       </p>
-      <button
-        className='btn btn-sm btn-remove'
-        onClick={() => removeFilmFromNominateArray(films)}
-      >
-        Remove
-      </button>
+
+      <Button
+      text={"Remove"}
+      onClick={() => removeFilmFromNominateArray(films)}
+      buttonStyle={"btn--scuba--solid"} 
+      buttonSize={"btn--medium"}
+      />
+        
     </div>
   );
 };

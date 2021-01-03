@@ -65,7 +65,7 @@ img {
   text-align: center;
   position: relative;
 }
-.closeButton {
+/* .closeButton {
   border: none;
   outline: none;
   text-align: center;
@@ -82,7 +82,7 @@ img {
 .closeButton:hover,
 .closeButton:focus {
   color: rgb(119, 116, 116);
-}
+} */
 
 .nomination-text {
   padding-top: 8%;
@@ -264,7 +264,7 @@ Padding */ .p {
   grid-gap: 1rem;
 }
 
-.btn {
+/* .btn {
   display: inline-block;
   background: var(--light-color);
   color: #333;
@@ -301,7 +301,7 @@ Padding */ .p {
 
 .btn-nom {
   background: var(--primary-color);
-}
+} */
 
 .badge {
   display: inline-block;

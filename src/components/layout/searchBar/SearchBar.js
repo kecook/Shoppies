@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../button/button';
 
 const SearchBar = (props) => {
   const [text, setText] = useState(''); 
@@ -17,6 +18,7 @@ const SearchBar = (props) => {
        setText('');
      }
    };
+
      return (
        <div>
          <form onSubmit={onSubmit}>
@@ -27,13 +29,21 @@ const SearchBar = (props) => {
              value={text}
              onChange={onChange}
            />
-           <input className='btn btn-block' type='submit' value='Search' />
+           <input className='btn--light--solid btn--full' type='submit' value='Search' />
          </form>
+         
          {props.showClearButton && (
-           <button
-           className='btn btn-block btn-clear'
-            onClick={props.clearMovies}>Clear</button>
-         )}
+          //  <button
+          //  className='btn btn-block btn-clear'
+          //   onClick={props.clearMovies}>Clear</button>
+            <Button 
+          text={"Clear"}
+          onClick={props.clearMovies}
+          buttonStyle={"btn--scuba--solid"} 
+          buttonSize={"btn--full"}/>
+         
+         )} 
+      
        </div>
      );
    

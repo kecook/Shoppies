@@ -6,13 +6,13 @@ import Alert from './components/layout/alert/Alert';
 import NominationList from './components/nomination/NominationList';
 import axios from 'axios';
 import './App.css';
-import nominationList from './components/nomination/NominationList';
 
 class App extends Component {
   state = {
     films: [],
     alert: null,
     nominationList: [],
+    buttonMessage: null
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
@@ -61,15 +61,18 @@ class App extends Component {
   //set Alert
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
-
-
-    // setTimeout(() => this.setState({ alert: null }), 6000);
+    setTimeout(() => this.setState({ alert: null }), 6000);
   };
 
   //close Alert
   closeAlert = () => {
     this.setState({ alert: null });
   };
+
+  //button message
+  buttonMessage =(msg, type) =>{
+    this.setState( { alert: {msg, type} });
+  }
 
   
   //nominate movies
@@ -79,8 +82,8 @@ class App extends Component {
       this.setState((state) => ({
         nominationList: [...state.nominationList, films],
       }));
-    } else {
-      this.setAlert('You can only nominate 5 movies.');
+  }else{
+      this.setAlert('You have exceeded the nomination limit.');
     }
   };
 
@@ -113,11 +116,13 @@ class App extends Component {
         </div>
 
         <div className='container2'>
-          <ListOfFilms
+        
+            <ListOfFilms
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
             nominationList={this.state.nominationList}
           />
+          
           {this.state.nominationList.length != 0 ? 
           <NominationList
             nominationList={this.state.nominationList}
