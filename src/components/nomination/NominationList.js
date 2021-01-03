@@ -2,7 +2,9 @@ import React from 'react';
 import ANomination from './ANomination';
 
 const nominationList = (props) => {
-  const { nominationList, removeFilmFromNominateArray } = props;
+  const { nominationList, removeFilmFromNominateArray, fiveNominations } = props;
+
+   
 
   return (
     <div>
@@ -17,7 +19,6 @@ const nominationList = (props) => {
             />
         ))}
         </div> 
-      
     </div>
   );
 };

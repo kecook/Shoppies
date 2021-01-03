@@ -11,8 +11,7 @@ class App extends Component {
   state = {
     films: [],
     alert: null,
-    nominationList: [],
-    buttonMessage: null
+    nominationList: []
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
@@ -64,28 +63,35 @@ class App extends Component {
     setTimeout(() => this.setState({ alert: null }), 6000);
   };
 
+  //setBanner
+  setBanner = (msg, type) => {
+    this.setState({ banner: {msg, type} });
+  }
+
   //close Alert
   closeAlert = () => {
     this.setState({ alert: null });
   };
 
-  //button message
-  buttonMessage =(msg, type) =>{
-    this.setState( { alert: {msg, type} });
-  }
-
   
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
-    if (this.state.nominationList.length <= 4) {
+    if (this.state.nominationList.length <= 3) {
       this.setState((state) => ({
         nominationList: [...state.nominationList, films],
       }));
-  }else{
+  } else if (this.state.nominationList.length === 4)
+     {
+      this.setState((state) => ({
+        nominationList: [...state.nominationList, films],
+      }));
+      this.setAlert('You have nominated five films.');
+   } else {
       this.setAlert('You have exceeded the nomination limit.');
     }
   };
+
 
   //
   removeFilmFromNominateArray = (films) => {
