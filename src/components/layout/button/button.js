@@ -6,11 +6,7 @@ const STYLES =[
     "btn--light--solid",
     "btn--primary--solid",
     "btn--scuba--solid",
-    "btn--success--solid",
-    "btn--primary--outline",
-    "btn--warning--outline",
-    "btn--danger--outline",
-    "btn--success--outline",
+    "btn--x--corner"
     
 ];
 

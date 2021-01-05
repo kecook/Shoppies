@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #a9d8c8;
+  --dark-color: #1d4e89;
+  --light-color: #e69ea1;
+  --danger-color: #db4372;
+  --success-color: #a9d8c8;
+  --scuba-color: #dfba47;
+}
+
+.bannerType {
+  padding: 0.7rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  color: var(--dark-color);
+}

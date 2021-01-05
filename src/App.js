@@ -6,11 +6,13 @@ import Alert from './components/layout/alert/Alert';
 import NominationList from './components/nomination/NominationList';
 import axios from 'axios';
 import './App.css';
+// import Banner from './components/layout/alert/banner';
 
 class App extends Component {
   state = {
     films: [],
     alert: null,
+    banner:null,
     nominationList: []
   };
 
@@ -60,7 +62,12 @@ class App extends Component {
   //set Alert
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
-    setTimeout(() => this.setState({ alert: null }), 6000);
+    // setTimeout(() => this.setState({ alert: null }), 6000);
+  };
+  
+  //close Alert
+  closeAlert = () => {
+    this.setState({ alert: null });
   };
 
   //setBanner
@@ -69,31 +76,29 @@ class App extends Component {
   }
 
   //close Alert
-  closeAlert = () => {
-    this.setState({ alert: null });
+  closeBanner = () => {
+    this.setState({ banner: null });
   };
 
-  
+  //show banner
+  showBanner =() =>{
+    if (this.state.nominationList.length ===4){ 
+      this.setBanner("You have nominated 5 movies.");
+    }
+  }
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
-    if (this.state.nominationList.length <= 3) {
+    if (this.state.nominationList.length <= 4) {
       this.setState((state) => ({
         nominationList: [...state.nominationList, films],
       }));
-  } else if (this.state.nominationList.length === 4)
-     {
-      this.setState((state) => ({
-        nominationList: [...state.nominationList, films],
-      }));
-      this.setAlert('You have nominated five films.');
-   } else {
+    } else{
       this.setAlert('You have exceeded the nomination limit.');
     }
   };
-
-
-  //
+    
+  //remove films
   removeFilmFromNominateArray = (films) => {
     this.setState((state) => ({
       nominationList: state.nominationList.filter(
@@ -101,6 +106,7 @@ class App extends Component {
       ),
     }));
   };
+
 
   
 
@@ -129,7 +135,7 @@ class App extends Component {
             nominationList={this.state.nominationList}
           />
           
-          {this.state.nominationList.length != 0 ? 
+          {this.state.nominationList.length !==0 ? 
           <NominationList
             nominationList={this.state.nominationList}
             removeFilmFromNominateArray={this.removeFilmFromNominateArray}

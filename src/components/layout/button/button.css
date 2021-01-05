@@ -37,6 +37,16 @@
   outline: none;
 }
 
+.btn--x--corner {
+  border: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  color: #333;
+}
+
 .btn--medium {
   font-size: 0.8rem;
   padding: 0.3rem 1rem;
@@ -53,17 +63,9 @@
 }
 
 .btn--close {
-  border: none;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.1rem;
-  background-color: var(--danger-color);
-  color: #333;
   position: absolute;
   top: 0px;
   right: 0.5rem;
-  transition: background 250ms ease-in-out, transform 150ms ease;
 }
 
 .btn--close:hover,

@@ -1,8 +1,9 @@
 import React from 'react';
+import Banner from '../layout/banner/banner';
 import ANomination from './ANomination';
 
 const nominationList = (props) => {
-  const { nominationList, removeFilmFromNominateArray, fiveNominations } = props;
+  const { nominationList, removeFilmFromNominateArray } = props;
 
    
 
@@ -10,6 +11,9 @@ const nominationList = (props) => {
     <div>
         <div>
           <h2 className='nomination-text '>Your nominations are...</h2>
+          {nominationList.length ===5?
+          <Banner
+          banner={"You have nominated five movies!"}/>:null}
             {nominationList &&
             nominationList.map((film) => (
             <ANomination
@@ -18,6 +22,7 @@ const nominationList = (props) => {
             removeFilmFromNominateArray={removeFilmFromNominateArray}
             />
         ))}
+        
         </div> 
     </div>
   );
