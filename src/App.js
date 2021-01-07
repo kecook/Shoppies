@@ -70,22 +70,21 @@ class App extends Component {
     this.setState({ alert: null });
   };
 
-  //setBanner
-  setBanner = (msg, type) => {
-    this.setState({ banner: {msg, type} });
-  }
-
-  //close Alert
+  
+//setBanner
+// setBanner = (msg, type) => {
+//   this.setState({ banner: {msg, type} });
+// }
+//   // //show banner
+//   // showBanner =() =>{
+//   //   if (this.state.nominationList.length ===4){ 
+//   //     this.setBanner("You have nominated 5 movies.");
+//   //   }
+//   // }
+  //close Banner
   closeBanner = () => {
     this.setState({ banner: null });
   };
-
-  //show banner
-  showBanner =() =>{
-    if (this.state.nominationList.length ===4){ 
-      this.setBanner("You have nominated 5 movies.");
-    }
-  }
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie

@@ -3,7 +3,7 @@ import Banner from '../layout/banner/banner';
 import ANomination from './ANomination';
 
 const nominationList = (props) => {
-  const { nominationList, removeFilmFromNominateArray } = props;
+  const { nominationList, removeFilmFromNominateArray, closeBanner} = props;
 
    
 
@@ -13,7 +13,7 @@ const nominationList = (props) => {
           <h2 className='nomination-text '>Your nominations are...</h2>
           {nominationList.length ===5?
           <Banner
-          banner={"You have nominated five movies!"}/>:null}
+          />:null}
             {nominationList &&
             nominationList.map((film) => (
             <ANomination
