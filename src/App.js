@@ -6,14 +6,12 @@ import Alert from './components/layout/alert/Alert';
 import NominationList from './components/nomination/NominationList';
 import axios from 'axios';
 import './App.css';
-// import Banner from './components/layout/alert/banner';
 
 class App extends Component {
   state = {
     films: [],
     alert: null,
-    banner:null,
-    nominationList: []
+    nominationList: [],
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
@@ -64,27 +62,17 @@ class App extends Component {
     this.setState({ alert: { msg, type } });
     // setTimeout(() => this.setState({ alert: null }), 6000);
   };
-  
+
   //close Alert
   closeAlert = () => {
     this.setState({ alert: null });
   };
 
-  
-//setBanner
-// setBanner = (msg, type) => {
-//   this.setState({ banner: {msg, type} });
-// }
-//   // //show banner
-//   // showBanner =() =>{
-//   //   if (this.state.nominationList.length ===4){ 
-//   //     this.setBanner("You have nominated 5 movies.");
-//   //   }
-//   // }
-  //close Banner
-  closeBanner = () => {
-    this.setState({ banner: null });
+  //setBanner
+  setBanner = (msg, type) => {
+    this.setState({ banner: { msg, type } });
   };
+
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
@@ -92,11 +80,11 @@ class App extends Component {
       this.setState((state) => ({
         nominationList: [...state.nominationList, films],
       }));
-    } else{
+    } else {
       this.setAlert('You have exceeded the nomination limit.');
     }
   };
-    
+
   //remove films
   removeFilmFromNominateArray = (films) => {
     this.setState((state) => ({
@@ -106,41 +94,34 @@ class App extends Component {
     }));
   };
 
-
-  
-
   render() {
     return (
       <div className='App'>
         <Navbar name='Shoppies' />
         <div className='container'>
-
           <SearchBar
             searchForMovies={this.searchForMovies}
             clearMovies={this.clearMovies}
             showClearButton={this.state.films.length ? true : false}
             setAlert={this.setAlert}
           />
-          <Alert
-          alert={this.state.alert} 
-          closeAlert={this.closeAlert}/>
+          <Alert alert={this.state.alert} closeAlert={this.closeAlert} />
         </div>
 
         <div className='container2'>
-        
-            <ListOfFilms
+          <ListOfFilms
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
             nominationList={this.state.nominationList}
           />
-          
-          {this.state.nominationList.length !==0 ? 
-          <NominationList
-            nominationList={this.state.nominationList}
-            removeFilmFromNominateArray={this.removeFilmFromNominateArray}
-          />:null }
-        </div> 
-  
+
+          {this.state.nominationList.length !== 0 ? (
+            <NominationList
+              nominationList={this.state.nominationList}
+              removeFilmFromNominateArray={this.removeFilmFromNominateArray}
+            />
+          ) : null}
+        </div>
       </div>
     );
   }
