@@ -13,4 +13,5 @@
   opacity: 0.9;
   color: var(--dark-color);
   position: relative;
+  background-color: red;
 }
