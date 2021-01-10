@@ -12,12 +12,14 @@ class App extends Component {
     films: [],
     alert: null,
     nominationList: [],
+    loading: false,
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
 
   searchForMovies = async (text) => {
     try {
+      this.setState({ loading: true });
       const REACT_APP_API_MOVIE_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
         `https://www.omdbapi.com/?apikey=${REACT_APP_API_MOVIE_KEY}&s&type`,
@@ -29,7 +31,7 @@ class App extends Component {
       const { Search } = data;
 
       if (data.Response === 'True') {
-        this.setState({ films: Search });
+        this.setState({ films: Search, loading: false });
       } else if (data.Error === 'Movie not found!') {
         this.setAlert(
           'Your search did not return any matches.Please try again'
@@ -60,7 +62,7 @@ class App extends Component {
   //set Alert
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
-    // setTimeout(() => this.setState({ alert: null }), 6000);
+    setTimeout(() => this.setState({ alert: null }), 6000);
   };
 
   //close Alert
@@ -108,7 +110,7 @@ class App extends Component {
           <Alert alert={this.state.alert} closeAlert={this.closeAlert} />
         </div>
 
-        <div className='container2'>
+        <div>
           <ListOfFilms
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}

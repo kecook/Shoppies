@@ -2,9 +2,8 @@ import React from 'react';
 import './banner.css';
 
 const Banner = (props) => {
-  console.log('I rendered');
   return (
-    <div className='bannerType'>
+    <div className='bannerType all-center'>
       <p>You have 5 nominations</p>
     </div>
   );

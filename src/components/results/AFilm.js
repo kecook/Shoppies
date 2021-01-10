@@ -1,15 +1,15 @@
 import React from 'react';
-import Button from '../layout/button/button'
-import '../../assets/ramona.png'
+import Button from '../layout/button/button';
+import '../../assets/ramona.png';
 
-const AFilm = (props) => {
-  const { movieResult, addFilmToNominateArray, isNominated } = props; //this is coming from results state
+const AFilm = ({ movieResult, addFilmToNominateArray, isNominated }) => {
   const { Title, Year } = movieResult;
 
   return (
-    <div className='card-flex text-center'>  
+    <div className='card text-center'>
+        
       <div className='poster-img'>
-      {movieResult.Poster === 'N/A' && (
+        {movieResult.Poster === 'N/A' && (
           <img
             src={require('../../assets/ramona.png')}
             alt='Ramona Quimby waving her hand'
@@ -19,17 +19,17 @@ const AFilm = (props) => {
           <img src={movieResult.Poster} alt='poster provided by database'></img>
         )}
       </div>
-      <div className='title-con'>
-        <p>
-          {Title} ({Year})
-        </p>
+      <div className='text-center'>
+        <p>{Title}</p>
+        <p>({Year})</p>
+
         {!isNominated && (
           <Button
-          text={"Nominate"}
-          onClick={() => addFilmToNominateArray(movieResult)}
-          disabled={isNominated}
-          buttonStyle={"btn--primary--solid"} 
-          buttonSize={"btn--medium"}
+            text={'Nominate'}
+            onClick={() => addFilmToNominateArray(movieResult)}
+            disabled={isNominated}
+            buttonStyle={'btn--primary--solid'}
+            buttonSize={'btn--medium'}
           />
         )}
         {isNominated && <h4>Nominated!</h4>}
