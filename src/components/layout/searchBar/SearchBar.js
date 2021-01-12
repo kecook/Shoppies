@@ -27,6 +27,7 @@ const SearchBar = ({
     <div>
       <form onSubmit={onSubmit}>
         <input
+          className='search'
           type='text'
           name='text'
           placeholder='Search Movies...'

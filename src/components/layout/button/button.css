@@ -6,7 +6,8 @@
   cursor: pointer;
   transition: opacity 0.2s ease-in;
   outline: none;
-  align-self: bottom;
+  /* align-self: bottom;
+  max-width: 200px; */
 }
 
 .btn--primary--solid {
@@ -17,7 +18,8 @@
   cursor: pointer;
   transition: opacity 0.2s ease-in;
   outline: none;
-  align-self: baseline;
+  min-width: 50px;
+  text-align: center;
 }
 
 .btn--scuba--solid {
@@ -28,6 +30,8 @@
   cursor: pointer;
   transition: opacity 0.2s ease-in;
   outline: none;
+
+  /* max-width: 200px; */
 }
 
 .btn--x--corner {
@@ -47,6 +51,7 @@
   padding: 0.3rem 1rem;
   margin-right: 0.2rem;
   margin-top: 1rem;
+  max-width: 200px;
 }
 
 .btn--full {

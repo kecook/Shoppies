@@ -6,23 +6,29 @@ const AFilm = ({ movieResult, addFilmToNominateArray, isNominated }) => {
   const { Title, Year } = movieResult;
 
   return (
-    <div className='card text-center'>
-        
-      <div className='poster-img'>
-        {movieResult.Poster === 'N/A' && (
-          <img
-            src={require('../../assets/ramona.png')}
-            alt='Ramona Quimby waving her hand'
-          />
-        )}
-        {movieResult.Poster !== 'N/A' && (
-          <img src={movieResult.Poster} alt='poster provided by database'></img>
-        )}
-      </div>
-      <div className='text-center'>
+    <div className='grid'>
+      <div className='card text-center'>
+          
+        <div className='poster-img'>
+          {movieResult.Poster === 'N/A' && (
+            <img
+              src={require('../../assets/ramona.png')}
+              alt='Ramona Quimby waving her hand'
+            />
+          )}
+          {movieResult.Poster !== 'N/A' && (
+            <img
+              src={movieResult.Poster}
+              alt='poster provided by database'
+            ></img>
+          )}
+        </div>
+        {/* <div className='text-center'> */}
         <p>{Title}</p>
         <p>({Year})</p>
-
+        {/* </div> */}
+      </div>
+      <div className='bottom text-center '>
         {!isNominated && (
           <Button
             text={'Nominate'}
@@ -32,9 +38,12 @@ const AFilm = ({ movieResult, addFilmToNominateArray, isNominated }) => {
             buttonSize={'btn--medium'}
           />
         )}
+        {/* </div>
+      <div className='text-center'> */}
         {isNominated && <h4>Nominated!</h4>}
+          
       </div>
-         
+       
     </div>
   );
 };

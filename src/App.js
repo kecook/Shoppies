@@ -100,6 +100,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Navbar name='Shoppies' />
+
         <div className='container'>
           <SearchBar
             searchForMovies={this.searchForMovies}

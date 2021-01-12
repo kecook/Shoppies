@@ -1,13 +1,9 @@
 .bannerType {
   padding: 0.7rem;
-  margin: 1rem 0;
-  opacity: 0.9;
+  margin: 2rem 0;
   background-color: var(--danger-color);
   color: #333;
-  /* border: 2px solid var(--dark-color);
-  border-radius: 5px; */
-  padding: 0.5rem;
-  max-width: 350px;
+  min-width: 250px;
 }
 
 div > p {
