@@ -9,7 +9,7 @@ const ListOfFilms = ({
   loading,
 }) => {
   if (loading) {
-    return <Spinner loading={this.state.loading} />;
+    return <Spinner loading={loading} />;
   } else {
     return (
       <div>
@@ -27,6 +27,7 @@ const ListOfFilms = ({
                   movieResult={filmInSearchResults}
                   addFilmToNominateArray={addFilmToNominateArray}
                   isNominated={isNominated}
+                  loading={loading}
                 />
               );
             })}

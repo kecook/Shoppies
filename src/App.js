@@ -20,6 +20,8 @@ class App extends Component {
   searchForMovies = async (text) => {
     try {
       this.setState({ loading: true });
+      // setTimeout(this.setState({ loading: null }), 6000);
+
       const REACT_APP_API_MOVIE_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
         `https://www.omdbapi.com/?apikey=${REACT_APP_API_MOVIE_KEY}&s&type`,
@@ -29,9 +31,9 @@ class App extends Component {
       );
       const { data } = response;
       const { Search } = data;
-
       if (data.Response === 'True') {
         this.setState({ films: Search, loading: false });
+        console.log('ran');
       } else if (data.Error === 'Movie not found!') {
         this.setAlert(
           'Your search did not return any matches.Please try again'
@@ -57,7 +59,7 @@ class App extends Component {
   };
 
   //clear search movies from state
-  clearMovies = () => this.setState({ films: [] });
+  clearMovies = () => this.setState({ films: [], loading: false });
 
   //set Alert
   setAlert = (msg, type) => {
@@ -116,6 +118,7 @@ class App extends Component {
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
             nominationList={this.state.nominationList}
+            loading={this.state.loading}
           />
 
           {this.state.nominationList.length !== 0 ? (

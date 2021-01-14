@@ -15,6 +15,7 @@ const nominationList = ({ nominationList, removeFilmFromNominateArray }) => {
                 key={film.imdbID + 1}
                 films={film}
                 removeFilmFromNominateArray={removeFilmFromNominateArray}
+                // loading={loading}
               />
             ))}
         </div>

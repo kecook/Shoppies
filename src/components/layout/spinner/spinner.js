@@ -2,11 +2,11 @@ import React from 'react';
 import '../../../assets/spinner.gif';
 
 const spinner = () => (
-  <div>
+  <div className='spinner-div'>
     <img
-      src={spinner}
+      className='spinner'
+      src={require('../../../assets/spinner.gif')}
       alt='Loading...'
-      style={{ width: '200px', margin: 'auto', display: 'block' }}
     />
   </div>
 );
