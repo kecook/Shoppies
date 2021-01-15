@@ -1,45 +1,31 @@
 import React from 'react';
 import Button from '../layout/button/button';
-import Spinner from '../layout/spinner/spinner';
 import '../../assets/ramona.png';
 
-const AFilm = ({
-  movieResult,
-  addFilmToNominateArray,
-  isNominated,
-  loading,
-}) => {
+const AFilm = ({ movieResult, addFilmToNominateArray, isNominated }) => {
   const { Title, Year } = movieResult;
-  // if (loading) {
-  //   return <Spinner />;
-  // } else {
+  const imageSource =
+    movieResult.Poster === 'N/A'
+      ? require('../../assets/ramona.png')
+      : movieResult.Poster;
+  const imageDescription =
+    movieResult.Poster === 'N/A'
+      ? 'Ramona Quimby waving her hand'
+      : 'Movie poster image from database';
   return (
     <div className='grid'>
       <div className='card text-center'>
           
         <div className='poster-img'>
-          {movieResult.Poster === 'N/A' && (
-            <img
-              className='poster'
-              src={require('../../assets/ramona.png')}
-              alt='Ramona Quimby waving her hand'
-            />
-          )}
-          {movieResult.Poster !== 'N/A' && (
-            <img
-              className='poster'
-              src={movieResult.Poster}
-              alt='poster provided by database'
-            ></img>
-          )}
+          <img className='poster' src={imageSource} alt={imageDescription} />
         </div>
-        {/* <div className='text-center'> */}
         <p>{Title}</p>
         <p>({Year})</p>
-        {/* </div> */}
       </div>
       <div className='bottom text-center '>
-        {!isNominated && (
+        {isNominated ? (
+          <h4>Nominated!</h4>
+        ) : (
           <div className='button wrapper'>
             <Button
               text={'Nominate'}
@@ -50,13 +36,9 @@ const AFilm = ({
             />
           </div>
         )}
-        {/* </div>
-      <div className='text-center'> */}
-        {isNominated && <h4>Nominated!</h4>} 
       </div>
     </div>
   );
 };
-// };
 
 export default AFilm;

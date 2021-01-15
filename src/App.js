@@ -20,7 +20,6 @@ class App extends Component {
   searchForMovies = async (text) => {
     try {
       this.setState({ loading: true });
-      // setTimeout(this.setState({ loading: null }), 6000);
 
       const REACT_APP_API_MOVIE_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
@@ -31,9 +30,10 @@ class App extends Component {
       );
       const { data } = response;
       const { Search } = data;
+
+      // error handling for API responses
       if (data.Response === 'True') {
         this.setState({ films: Search, loading: false });
-        console.log('ran');
       } else if (data.Error === 'Movie not found!') {
         this.setAlert(
           'Your search did not return any matches.Please try again'
@@ -80,7 +80,7 @@ class App extends Component {
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
-    if (this.state.nominationList.length <= 4) {
+    if (this.state.nominationList.length < 5) {
       this.setState((state) => ({
         nominationList: [...state.nominationList, films],
       }));
@@ -93,7 +93,7 @@ class App extends Component {
   removeFilmFromNominateArray = (films) => {
     this.setState((state) => ({
       nominationList: state.nominationList.filter(
-        (film) => film.imdbID !== films.imdbID //we use the imdbID here because it is a unique ID
+        (film) => film.imdbID !== films.imdbID
       ),
     }));
   };
@@ -107,7 +107,7 @@ class App extends Component {
           <SearchBar
             searchForMovies={this.searchForMovies}
             clearMovies={this.clearMovies}
-            showClearButton={this.state.films.length ? true : false}
+            showClearButton={!!this.state.films.length}
             setAlert={this.setAlert}
           />
           <Alert alert={this.state.alert} closeAlert={this.closeAlert} />
@@ -121,12 +121,12 @@ class App extends Component {
             loading={this.state.loading}
           />
 
-          {this.state.nominationList.length !== 0 ? (
+          {this.state.nominationList.length && (
             <NominationList
               nominationList={this.state.nominationList}
               removeFilmFromNominateArray={this.removeFilmFromNominateArray}
             />
-          ) : null}
+          )}
         </div>
       </div>
     );

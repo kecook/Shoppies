@@ -9,12 +9,12 @@ const SearchBar = ({
 }) => {
   const [text, setText] = useState('');
 
-  const onChange = (e) => {
-    setText(e.target.value);
+  const onChange = (event) => {
+    setText(event.target.value);
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (event) => {
+    event.preventDefault();
     if (!text) {
       setAlert('Search field can not be left blank');
     } else {

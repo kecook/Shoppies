@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Banner = (props) => {
+const Banner = () => {
   return (
     <div className='banner-contain'>
       <div className='banner-words'>

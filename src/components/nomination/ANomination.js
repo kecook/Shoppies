@@ -12,7 +12,7 @@ const ANomination = ({ films, removeFilmFromNominateArray }) => {
       </div>
       <div className='bottom-nom'>
         <Button
-          text={'Remove'}
+          text='Remove'
           onClick={() => removeFilmFromNominateArray(films)}
           buttonStyle={'btn--scuba--solid'}
           buttonSize={'btn--medium'}
