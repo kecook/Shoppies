@@ -1,0 +1,10 @@
+.spinner-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.spinner {
+  padding: 0.7rem;
+  width: 20vh;
+  height: 20vh;
+}

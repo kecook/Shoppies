@@ -1,0 +1,5 @@
+.banner-words {
+  padding: 0.5rem;
+  background-color: var(--danger-color);
+  color: #333;
+}

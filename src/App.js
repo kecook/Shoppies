@@ -13,6 +13,7 @@ class App extends Component {
     alert: null,
     nominationList: [],
     loading: false,
+    banner: false,
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
@@ -36,7 +37,7 @@ class App extends Component {
         this.setState({ films: Search, loading: false });
       } else if (data.Error === 'Movie not found!') {
         this.setAlert(
-          'Your search did not return any matches.Please try again'
+          'Your search did not return any matches. Please try again'
         );
       } else if (data.Error === 'Too many results.') {
         this.setAlert(
@@ -112,21 +113,19 @@ class App extends Component {
           />
           <Alert alert={this.state.alert} closeAlert={this.closeAlert} />
         </div>
-
-        <div>
+        <div className='wrapper'>
           <ListOfFilms
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
             nominationList={this.state.nominationList}
             loading={this.state.loading}
           />
-
-          {this.state.nominationList.length && (
+          {this.state.nominationList.length !== 0 ? (
             <NominationList
               nominationList={this.state.nominationList}
               removeFilmFromNominateArray={this.removeFilmFromNominateArray}
             />
-          )}
+          ) : null}
         </div>
       </div>
     );

@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../../assets/spinner.gif';
+import './Spinner.css';
 
-const spinner = () => (
+const Spinner = () => (
   <div className='spinner-div'>
     <img
       className='spinner'
@@ -11,4 +12,4 @@ const spinner = () => (
   </div>
 );
 
-export default spinner;
+export default Spinner;

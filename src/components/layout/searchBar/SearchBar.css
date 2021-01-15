@@ -1,0 +1,38 @@
+/* Forms */
+input {
+  margin: 1.2rem 0;
+}
+
+.search {
+  padding: 0 2rem;
+}
+
+.form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+input[type='text'],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+input[type='submit'],
+button {
+  font: inherit;
+}
+
+.alert {
+  padding: 0.7rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--danger-color);
+  color: #333;
+  position: relative;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../button/button';
+import './SearchBar.css';
 
 const SearchBar = ({
   setAlert,

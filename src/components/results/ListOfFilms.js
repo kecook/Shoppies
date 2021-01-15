@@ -1,6 +1,7 @@
 import React from 'react';
 import AFilm from './AFilm';
-import Spinner from '../layout/spinner/spinner';
+import Spinner from '../layout/spinner/Spinner';
+import './ListOfFilms.css';
 
 const ListOfFilms = ({
   films,
@@ -13,8 +14,9 @@ const ListOfFilms = ({
   }
   return (
     <div>
-      <h2 className='title-center'>Your search returned...</h2>
+      <h2 className='search-title'>Your search returned...</h2>
       <div className='container2'>
+        {/* <div> */}
         {films &&
           films.map((filmInSearchResults) => {
             const isNominated = nominationList.find(
@@ -34,6 +36,7 @@ const ListOfFilms = ({
          
       </div>
     </div>
+    // </div>
   );
 };
 

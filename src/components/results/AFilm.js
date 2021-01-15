@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../layout/button/button';
 import '../../assets/ramona.png';
+import './AFilm.css';
 
 const AFilm = ({ movieResult, addFilmToNominateArray, isNominated }) => {
   const { Title, Year } = movieResult;
@@ -13,20 +14,22 @@ const AFilm = ({ movieResult, addFilmToNominateArray, isNominated }) => {
       ? 'Ramona Quimby waving her hand'
       : 'Movie poster image from database';
   return (
-    <div className='grid'>
-      <div className='card text-center'>
+    <div className='card'>
+      <div className='text-center'>
           
         <div className='poster-img'>
           <img className='poster' src={imageSource} alt={imageDescription} />
         </div>
-        <p>{Title}</p>
-        <p>({Year})</p>
+        <div className='movie-title'>
+          <p className>{Title}</p>
+          <p className>({Year})</p>
+        </div>
       </div>
       <div className='bottom text-center '>
         {isNominated ? (
           <h4>Nominated!</h4>
         ) : (
-          <div className='button wrapper'>
+          <div className='button'>
             <Button
               text={'Nominate'}
               onClick={() => addFilmToNominateArray(movieResult)}
