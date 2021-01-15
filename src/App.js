@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Navbar from './componants/layout/Navbar';
-import Search from './componants/results/Search';
-import Results from './componants/results/Results';
-import Alert from './componants/layout/Alert';
-import Nomination from './componants/nomination/Nomination';
+import Navbar from './components/layout/navbar/Navbar';
+import SearchBar from './components/layout/searchBar/SearchBar';
+import ListOfFilms from './components/results/ListOfFilms';
+import Alert from './components/layout/alert/Alert';
+import NominationList from './components/nomination/NominationList';
 import axios from 'axios';
 import './App.css';
 
@@ -12,12 +12,16 @@ class App extends Component {
     films: [],
     alert: null,
     nominationList: [],
+    loading: false,
+    banner: false,
   };
 
   // this function accepts a movie title, searches the omdb api and returns an array of 10 movie objects that has the movie title in it
 
-  searchMovies = async (text) => {
+  searchForMovies = async (text) => {
     try {
+      this.setState({ loading: true });
+
       const REACT_APP_API_MOVIE_KEY = process.env.REACT_APP_API_MOVIE_KEY;
       const response = await axios.get(
         `https://www.omdbapi.com/?apikey=${REACT_APP_API_MOVIE_KEY}&s&type`,
@@ -28,11 +32,12 @@ class App extends Component {
       const { data } = response;
       const { Search } = data;
 
+      // error handling for API responses
       if (data.Response === 'True') {
-        this.setState({ films: Search });
+        this.setState({ films: Search, loading: false });
       } else if (data.Error === 'Movie not found!') {
         this.setAlert(
-          'Your search did not return any matches.Please try again'
+          'Your search did not return any matches. Please try again'
         );
       } else if (data.Error === 'Too many results.') {
         this.setAlert(
@@ -55,32 +60,41 @@ class App extends Component {
   };
 
   //clear search movies from state
-  clearMovies = () => this.setState({ films: [] });
+  clearMovies = () => this.setState({ films: [], loading: false });
 
   //set Alert
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
-
     setTimeout(() => this.setState({ alert: null }), 6000);
+  };
+
+  //close Alert
+  closeAlert = () => {
+    this.setState({ alert: null });
+  };
+
+  //setBanner
+  setBanner = (msg, type) => {
+    this.setState({ banner: { msg, type } });
   };
 
   //nominate movies
   addFilmToNominateArray = (films) => {
     // adding this if state so we only add movies to the array when the array is less than or equal to 4.  This is because if we use 5 here, then when the array equals 5, it will still add one more movie
-    if (this.state.nominationList.length <= 4) {
+    if (this.state.nominationList.length < 5) {
       this.setState((state) => ({
         nominationList: [...state.nominationList, films],
       }));
     } else {
-      this.setAlert('You can only nominate 5 movies.');
+      this.setAlert('You have exceeded the nomination limit.');
     }
   };
 
-  //
+  //remove films
   removeFilmFromNominateArray = (films) => {
     this.setState((state) => ({
       nominationList: state.nominationList.filter(
-        (film) => film.imdbID !== films.imdbID //we use the imdbID here because it is a unique ID
+        (film) => film.imdbID !== films.imdbID
       ),
     }));
   };
@@ -89,26 +103,29 @@ class App extends Component {
     return (
       <div className='App'>
         <Navbar name='Shoppies' />
+
         <div className='container'>
-          <Search
-            searchMovies={this.searchMovies}
+          <SearchBar
+            searchForMovies={this.searchForMovies}
             clearMovies={this.clearMovies}
-            showClear={this.state.films.length ? true : false}
+            showClearButton={!!this.state.films.length}
             setAlert={this.setAlert}
           />
-          <Alert alert={this.state.alert} />
+          <Alert alert={this.state.alert} closeAlert={this.closeAlert} />
         </div>
-
-        <div className='container2'>
-          <Results
+        <div className='wrapper'>
+          <ListOfFilms
             films={this.state.films}
             addFilmToNominateArray={this.addFilmToNominateArray}
             nominationList={this.state.nominationList}
+            loading={this.state.loading}
           />
-          <Nomination
-            nominationList={this.state.nominationList}
-            removeFilmFromNominateArray={this.removeFilmFromNominateArray}
-          />
+          {this.state.nominationList.length !== 0 ? (
+            <NominationList
+              nominationList={this.state.nominationList}
+              removeFilmFromNominateArray={this.removeFilmFromNominateArray}
+            />
+          ) : null}
         </div>
       </div>
     );
