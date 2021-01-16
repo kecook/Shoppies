@@ -1,5 +1,5 @@
 import React from 'react';
-import Banner from '../layout/banner/Banner';
+import Banner from '../layout/banner/banner';
 import ANomination from './ANomination';
 import './NominationList.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Banner.css';
 
-const Banner = () => {
+const banner = () => {
   return (
     <div className='banner-words'>
       <p>You have 5 nominations</p>
@@ -9,4 +9,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default banner;
