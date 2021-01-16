@@ -1,6 +1,6 @@
 import React from 'react';
 import AFilm from './AFilm';
-import Spinner from '../layout/spinner/Spinner';
+import Spinner from '../layout/spinner/spinner';
 import './ListOfFilms.css';
 
 const ListOfFilms = ({

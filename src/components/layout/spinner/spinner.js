@@ -2,7 +2,7 @@ import React from 'react';
 import '../../../assets/spinner.gif';
 import './Spinner.css';
 
-const Spinner = () => (
+const spinner = () => (
   <div className='spinner-div'>
     <img
       className='spinner'
@@ -12,4 +12,4 @@ const Spinner = () => (
   </div>
 );
 
-export default Spinner;
+export default spinner;
