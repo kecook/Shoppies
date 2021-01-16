@@ -16,7 +16,6 @@ const ListOfFilms = ({
     <div>
       <h2 className='search-title'>Your search returned...</h2>
       <div className='container2'>
-        {/* <div> */}
         {films &&
           films.map((filmInSearchResults) => {
             const isNominated = nominationList.find(
